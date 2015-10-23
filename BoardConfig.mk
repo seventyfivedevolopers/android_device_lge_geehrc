@@ -28,6 +28,12 @@ TARGET_NEEDS_TEXT_RELOCATIONS := true
 
 TARGET_NO_BOOTLOADER := true
 
+# Inline kernel
+TARGET_KERNEL_CONFIG := gee_defconfig
+TARGET_KERNEL_SOURCE := kernel/lge/gee
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
+KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
+
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=geehrc lpj=67677 user_debug=31 androidboot.selinux=permissive
