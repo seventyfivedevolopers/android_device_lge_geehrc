@@ -273,9 +273,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.qc.sensors.wl_dis=true \
 	ro.qualcomm.sensors.smd=true
 
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-	persist.sys.usb.config=mtp
-	
 PRODUCT_PROPERTY_OVERRIDES += \
         dalvik.vm.dex2oat-swap=false
 
