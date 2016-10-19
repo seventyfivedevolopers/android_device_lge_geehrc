@@ -60,6 +60,7 @@ PRODUCT_COPY_FILES += \
 	device/lge/geehrc/init.geehrc.usb.rc:root/init.geehrc.usb.rc \
 	device/lge/geehrc/fstab.geehrc:root/fstab.geehrc \
 	device/lge/geehrc/ueventd.geehrc.rc:root/ueventd.geehrc.rc \
+        device/lge/geehrc/recovery/twrp.fstab:recovery/root/etc/twrp.fstab \
 	device/lge/geehrc/media_profiles.xml:system/etc/media_profiles.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
@@ -98,6 +99,7 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
 	frameworks/native/data/etc/android.software.print.xml:system/etc/permissions/android.software.print.xml \
 	frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+        frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
 	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
 	frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
 	frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
@@ -129,9 +131,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.sf.lcd_density=320
 
 PRODUCT_PROPERTY_OVERRIDES += \
+        telephony.lteOnCdmaDevice=1 \
 	telephony.lteOnGsmDevice=1 \
-	ro.telephony.default_network=9 \
-	ro.ril.def.preferred.network=9
+	ro.telephony.default_network=10 \
+	ro.ril.def.preferred.network=10 \
+        ril.subscription.types=NV,RUIM
 
 # Audio Configuration
 # FIXME: Remove persist.audio.handset.mic and persist.audio.fluence.mode
@@ -156,9 +160,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #Upto 3 layers can go through overlays
 PRODUCT_PROPERTY_OVERRIDES += persist.hwc.mdpcomp.enable=true
 
-# Force older camera API.
+# Force older camera API and use legacy encoder
 PRODUCT_PROPERTY_OVERRIDES += \
-	camera2.portability.force_api=1
+	camera2.portability.force_api=1 \
+        media.stagefright.legacyencoder=1
 
 PRODUCT_CHARACTERISTICS := nosdcard
 
@@ -245,9 +250,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	rild.libpath=/system/lib/libril-qc-qmi-1.so
 
-PRODUCT_PROPERTY_OVERRIDES += \
-	telephony.lteOnCdmaDevice=0
-
 ifeq ($(findstring tiny, $(TARGET_PRODUCT)),)
 PRODUCT_PROPERTY_OVERRIDES += \
 	drm.service.enabled=true
@@ -267,6 +269,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.qc.sensors.wl_dis=true \
 	ro.qualcomm.sensors.smd=true
+
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+ 	persist.sys.usb.config=mtp
+
+# set SELinux property value
+PRODUCT_PROPERTY_OVERRIDES += \
+        ro.build.selinux=1
 
 PRODUCT_PROPERTY_OVERRIDES += \
         dalvik.vm.dex2oat-filter=speed \

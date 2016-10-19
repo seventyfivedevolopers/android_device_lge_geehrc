@@ -24,7 +24,7 @@ TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := krait
 
 # Legacy blobs
-TARGET_NEEDS_TEXT_RELOCATIONS := true
+TARGET_NEEDS_PLATFORM_TEXTRELS := true
 
 TARGET_NO_BOOTLOADER := true
 
@@ -55,6 +55,9 @@ TARGET_BOOTLOADER_NAME=geehrc
 TARGET_BOARD_INFO_FILE := device/lge/geehrc/board-info.txt
 
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/geehrc/bluetooth
+
+USE_CLANG_PLATFORM_BUILD := true
+BIONIC_LIBC_DISABLE_CLANG := true
 
 # FIXME: HOSTAPD-derived wifi driver
 BOARD_HAS_QCOM_WLAN := true
@@ -126,5 +129,19 @@ USE_MINIKIN := true
 EXTENDED_FONT_FOOTPRINT := true
 
 MALLOC_SVELTE := true
+
+#TWRP config
+TW_THEME := portrait_hdpi
+TW_THEME_LANDSCAPE := landscape_hdpi
+RECOVERY_SDCARD_ON_DATA := true
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+BOARD_HAS_NO_REAL_SDCARD := true
+TW_NO_USB_STORAGE := true
+TW_BRIGHTNESS_PATH := /sys/class/backlight/lm3530/brightness
+TW_MAX_BRIGHTNESS := 255
+TW_EXCLUDE_ENCRYPTED_BACKUPS := true
+
+#Asserts
+TARGET_OTA_ASSERT_DEVICE := gee,geeb,geehrc,e975,geehrc_4g_spr,geespr,ls970,geehrc4g,geehrc4g_spr_us,geebus,e970,e973,e971,geeb_att_us
 
 -include vendor/lge/geehrc/BoardConfigVendor.mk
