@@ -26,6 +26,9 @@ TARGET_CPU_VARIANT := krait
 # Legacy blobs
 TARGET_NEEDS_PLATFORM_TEXTRELS := true
 
+#Camera HAL v1
+TARGET_HAS_CAMERA_HAL_V1 := true
+
 TARGET_NO_BOOTLOADER := true
 
 # Inline kernel

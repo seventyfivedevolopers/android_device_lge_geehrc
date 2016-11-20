@@ -163,7 +163,8 @@ PRODUCT_PROPERTY_OVERRIDES += persist.hwc.mdpcomp.enable=true
 # Force older camera API and use legacy encoder
 PRODUCT_PROPERTY_OVERRIDES += \
 	camera2.portability.force_api=1 \
-        media.stagefright.legacyencoder=1
+        media.stagefright.legacyencoder=true \
+        media.stagefright.less-secure=true
 
 PRODUCT_CHARACTERISTICS := nosdcard
 
