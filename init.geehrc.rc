@@ -283,7 +283,7 @@ service qmuxd /system/bin/qmuxd
 service kickstart /system/bin/qcks -i /firmware/image/ -r /data/tombstones/mdm/
     class core
     user system
-    group system
+    group system wakelock
     oneshot
 
 service netmgrd /system/bin/netmgrd
@@ -340,7 +340,7 @@ service thermald /system/bin/thermald
 service mpdecision /system/bin/mpdecision --avg_comp
     class main
     user root
-    group root system
+    group root readproc system
 
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
