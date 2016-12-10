@@ -135,8 +135,6 @@ USE_MINIKIN := true
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
-MALLOC_SVELTE := true
-
 #TWRP config
 TW_THEME := portrait_hdpi
 TW_THEME_LANDSCAPE := landscape_hdpi
