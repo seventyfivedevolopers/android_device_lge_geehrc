@@ -127,6 +127,11 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 
+TARGET_NEEDS_GCC_LIBC := true
+
+TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
+
+
 HAVE_ADRENO_SOURCE:= false
 
 # Enable Minikin text layout engine (will be the default soon)
